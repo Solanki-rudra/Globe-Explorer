@@ -1,6 +1,5 @@
 {
-  "homepage": "https://Solanki-rudra.github.io/Global-Explorer",
-  "name": "global-explorer",
+  "name": "globe-explorer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
