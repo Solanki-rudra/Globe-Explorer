@@ -1,0 +1,1 @@
+    export const REST_CONTRIES = 'https://restcountries.com/v2/all';
