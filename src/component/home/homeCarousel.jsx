@@ -4,30 +4,60 @@ import { carouselData } from '../../config/homeCarouselData';
 
 const HomeCarousel = () => {
     const [currentItemIndex, setCurrentItemIndex] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
     const nextCarouselRef = useRef(null);
 
     useEffect(() => {
-        autoSlide();
+        startAutoSlide();
+        return () => {
+            clearInterval(nextCarouselRef.current);
+        };
+    }, []);
 
-        return () => clearInterval(nextCarouselRef.current);
-    }, [currentItemIndex]);
+    function startAutoSlide() {
+        nextCarouselRef.current = setInterval(() => {
+            handleNext();
+        }, 5000);
+    }
 
-    function autoSlide() {
+    function resetAutoSlide() {
         clearInterval(nextCarouselRef.current);
-        nextCarouselRef.current = setInterval(handleNext, 5000);
+        startAutoSlide();
     }
 
     function handleNext() {
-        setCurrentItemIndex(prev => prev === carouselData.length - 1 ? 0 : prev + 1);
+        if (isTransitioning) return;
+
+        setIsTransitioning(true);
+        setCurrentItemIndex(prevIndex => 
+            prevIndex === carouselData.length - 1 ? 0 : prevIndex + 1
+        );
+        
+        setTimeout(() => {
+            setIsTransitioning(false);
+        }, 500);
+
+        resetAutoSlide();
     }
 
     function handlePrev() {
-        setCurrentItemIndex(prev => prev === 0 ? carouselData.length - 1 : prev - 1);
-    }
+        if (isTransitioning) return;
 
+        setIsTransitioning(true);
+        setCurrentItemIndex(prevIndex => 
+            prevIndex === 0 ? carouselData.length - 1 : prevIndex - 1
+        );
+
+        setTimeout(() => {
+            setIsTransitioning(false);
+        }, 500);
+
+        resetAutoSlide();
+    }
+    
     return (
         <div className='flex justify-center mt-5 items-center'>
-            <span onClick={handlePrev} className='w-6 lg:w-10 ml-2 lg:ml-5 h-6 lg:h-10 rounded-full bg-gray-600/50 hover:bg-white transition-all cursor-pointer text-sm lg:text-2xl font-bold text-center'>
+            <span onClick={handlePrev} className='w-6 lg:w-10 ml-2 lg:ml-5 h-6 lg:h-10 rounded-full bg-gray-600/50 hover:bg-white transition-all cursor-pointer text-sm lg:text-2xl font-bold text-center text-white hover:text-black'>
                 &lt;
             </span>
 
@@ -58,7 +88,7 @@ const HomeCarousel = () => {
                 </div>
             </div>
 
-            <span onClick={handleNext} className='w-6 lg:w-10 mr-2 lg:mr-5 h-6 lg:h-10 rounded-full bg-gray-600/50 hover:bg-white transition-all cursor-pointer text-sm lg:text-2xl font-bold text-center'>
+            <span onClick={handleNext} className='w-6 lg:w-10 mr-2 lg:mr-5 h-6 lg:h-10 rounded-full bg-gray-600/50 hover:bg-white transition-all cursor-pointer text-sm lg:text-2xl font-bold text-center text-white hover:text-black'>
                 &gt;
             </span>
         </div>
