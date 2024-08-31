@@ -1,5 +1,34 @@
 
 
+.corner-cut-btn::before{
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 80%;
+  top: 10%;
+  left: -15px;
+  border: 2px solid #b4444a;
+  background-color: #aa4045;
+  transition: 0.2s;
+}
+.corner-cut-btn::after{
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 80%;
+  top: 10%;
+  right: -15px;
+  border: 2px solid #b4444a;
+  background-color: #aa4045;
+  transition: 0.2s;
+}
+.corner-cut-btn:hover::after{
+  right: -20px;
+}
+.corner-cut-btn:hover::before{
+  left: -20px;
+}
+
 /* loading-spinner ----------------------------------------------------------------- */
 
 
@@ -128,3 +157,6 @@ input[type="range"] {
     width: 10rem;
   }
 }
+
+
+

@@ -12,7 +12,7 @@ const Account = () => {
   return (
     <div className='pt-14 p-4 bg-slate-700 min-h-screen'>
       <div className='mt-14 lg:m-14 p-10 rounded flex flex-col gap-3 bg-slate-800'>
-        <h1 className='text-white'>Hello, Dear {user ? user : 'user'}.</h1>
+        <h1 className='text-white'>Hello 👋, Dear {user ? user : 'user'}.</h1>
         <h1 className='text-white'>Your details are personal, keep them personal.</h1>
         {
           user && 

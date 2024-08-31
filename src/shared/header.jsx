@@ -13,8 +13,8 @@ export default function Header() {
             <nav className="bg-white  border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-500/75">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <NavLink to='/' className="flex items-center">
-                        <span className="self-center py-2 text-xl font-semibold whitespace-nowrap dark:text-white">
-                            GE
+                        <span className="self-center py-2 text-xl flex gap-1 font-semibold whitespace-nowrap dark:text-white">
+                            GE <img src='/images/globe-stand.webp' width={30}/>
                         </span>
                     </NavLink>
                     <div className="flex items-center lg:order-2">
